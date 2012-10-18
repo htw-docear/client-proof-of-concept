@@ -8,6 +8,7 @@ object Vfs2ClientBuild extends Build {
       organization := "org.docear",
       version := "1.0-SNAPSHOT", 
       scalaVersion := "2.9.1",
+      javacOptions ++= Seq("-target", "1.6") ++ Seq("-source", "1.6"),
       libraryDependencies += "org.apache.commons" % "commons-vfs2" % "2.0",
       libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.2.1",
       libraryDependencies += "org.apache.httpcomponents" % "httpmime" % "4.2.1",
