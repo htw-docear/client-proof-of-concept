@@ -20,9 +20,9 @@ import java.io.IOException;
 import static org.apache.commons.lang.SystemUtils.getUserDir;
 
 public class Uploader {
-    public static void upload(String host, String path, String userName, String password) throws IOException {
+    public static void upload(String host, int port, String path, String userName, String password) throws IOException {
 
-        HttpHost targetHost = new HttpHost(host, 80, "http");
+        HttpHost targetHost = new HttpHost(host, port, "http");
 
         DefaultHttpClient httpclient = new DefaultHttpClient();
         try {
