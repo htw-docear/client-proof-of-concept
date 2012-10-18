@@ -16,19 +16,21 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import static org.apache.commons.lang.SystemUtils.getUserDir;
 
 public class Uploader {
-    public static void upload(String host, int port, String path, String userName, String password) throws IOException {
+    public static void upload(UploadConfig config, URL url) throws IOException, URISyntaxException {
 
-        HttpHost targetHost = new HttpHost(host, port, "http");
+        HttpHost targetHost = new HttpHost(config.getHost(), config.getPort(), "http");
 
         DefaultHttpClient httpclient = new DefaultHttpClient();
         try {
             httpclient.getCredentialsProvider().setCredentials(
                     new AuthScope(targetHost.getHostName(), targetHost.getPort()),
-                    new UsernamePasswordCredentials(userName, password));
+                    new UsernamePasswordCredentials(config.getUserName(), config.getPassword()));
 
             // Create AuthCache instance
             AuthCache authCache = new BasicAuthCache();
@@ -42,11 +44,11 @@ public class Uploader {
             localcontext.setAttribute(ClientContext.AUTH_CACHE, authCache);
 
 
-            HttpPost post = new HttpPost(path);
+            HttpPost post = new HttpPost(config.getPath());
             System.out.println("executing request: " + post.getRequestLine());
 
             MultipartEntity multipartEntity = new MultipartEntity();
-            multipartEntity.addPart("file", new FileBody(new File(getUserDir(), "sync.txt")));//TODO extract
+            multipartEntity.addPart("file", new FileBody(new File(url.toURI())));
             post.setEntity(multipartEntity);
 
 
