@@ -13,5 +13,5 @@ object Vfs2ClientBuild extends Build {
       libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.2.1",
       libraryDependencies += "org.apache.httpcomponents" % "httpmime" % "4.2.1",
       libraryDependencies += "commons-lang" % "commons-lang" % "2.6"
-    )
+    ).settings(com.github.retronym.SbtOneJar.oneJarSettings: _*)
 }
