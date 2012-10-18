@@ -9,6 +9,6 @@ object Vfs2ClientBuild extends Build {
       version := "1.0-SNAPSHOT", 
       scalaVersion := "2.9.1",
       libraryDependencies += "org.apache.commons" % "commons-vfs2" % "2.0",
-      libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
+      libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.2.1"
     )
 }

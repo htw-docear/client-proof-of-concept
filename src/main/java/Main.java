@@ -8,10 +8,16 @@ import org.apache.commons.vfs2.FileSystemManager;
 import org.apache.commons.vfs2.VFS;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileSystemException {
+    public static void main(String[] args) throws IOException {
+        Uploader.upload(args[0], args[1], args[2]);
+        //watch();
+    }
+
+    private static void watch() throws FileSystemException {
         FileSystemManager fsManager = VFS.getManager();
         FileObject watchDir = fsManager.resolveFile("/tmp/towatch/");//todo command line param
 
